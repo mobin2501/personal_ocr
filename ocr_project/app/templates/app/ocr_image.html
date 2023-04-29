@@ -1,0 +1,25 @@
+{% load static %}
+{% load compress %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% compress css %}
+        <link rel="stylesheet" href="{% static 'src/output.css' %}">
+        
+        {% endcompress %}
+
+
+    </head>
+    <body>
+        <h1 class="text-3xl font-bold text-yellow-600">
+            Hello world!
+        </h1>
+        
+        <form method="POST" enctype="multipart/form-data" class="justify-center">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="upload">
+        </form>
+    </body>
+</html>
