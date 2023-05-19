@@ -1,0 +1,45 @@
+{% load static %}
+{% load compress %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'src/output.css' %}">
+    {% endcompress %}
+    
+    <title>{% block title %}Default Title{% endblock %}</title>
+    {% block extra_head %}
+    <!-- Any extra head content goes here -->
+    {% endblock %}
+</head>
+<body>
+    <div class="md:container md:mx-auto">
+        <div class="flex flex-col">
+            <div class="flex flex-row p-8">
+                <div class="flex w-1/2 justify-center text-2xl font-medium" ><a class="border-2 border-orange-400 bg-orange-100 text-orange-400 hover:bg-orange-300 hover:text-white px-2" href="{% url 'home' %}">Django OCR</a> </div>
+                <div class="flex w-1/2 justify-center">
+                    <div class="flex w-1/2 justify-end px-2"><a href="{% url 'ocr_image' %}" class="flex w-1/3 rounded-none justify-center bg-blue-400 hover:bg-blue-800 text-white px-3 py-2 text-lg">Image</a></div>
+                    <div class="flex w-1/2 justify-start px-2"><a href="{% url 'ocr_image' %}" class="flex bg-blue-500 w-1/3 rounded-none justify-center text-white px-3 py-2 font-sans text-lg">PDF</a></div>
+                </div>
+            </div>
+        </div>
+        {% block content %}
+        
+        {% endblock %}
+        
+    </div>
+    
+    <footer>
+        <!-- Footer content goes here -->
+    </footer>
+    
+    {% block extra_scripts %}
+    <!-- Any extra script tags go here -->
+    {% endblock %}
+</body>
+</html>

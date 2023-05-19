@@ -1,25 +1,23 @@
-{% load static %}
-{% load compress %}
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        {% compress css %}
-        <link rel="stylesheet" href="{% static 'src/output.css' %}">
+{% extends "base.html" %}
+
+{% block title %}Image to Text{% endblock %}
+
+{% block content %} 
+<div class="flex">
+    <form method="post" class='w-full '>
+        {% csrf_token %}
+        <div class="flex flex-col justify-center items-center space-y-2">
+            <label class="flex text-xl font-medium text-gray-900 dark:bg-yello-300" for="{{form.file.name}}">Upload File</label>
+            <div class="border-2 border-orange-400 bg-orange-200 justify-center items-center">{{form.file}}</div>
+        </div>
+        <div class="flex justify-center items-center space-y-2">
+            <button class="border-2 border-orange-400 bg-orange-100 hover:bg-400 font-base text-lg text-orange-400 px-2" type="submit">Submit</button>
+        </div>
         
-        {% endcompress %}
+        
+    </form>
+</div>
 
 
-    </head>
-    <body>
-        <h1 class="text-3xl font-bold text-yellow-600">
-            Hello world!
-        </h1>
-        
-        <form method="POST" enctype="multipart/form-data" class="justify-center">
-            {% csrf_token %}
-            {{form.as_p}}
-            <input type="submit" value="upload">
-        </form>
-    </body>
-</html>
+</form>
+{% endblock %}
